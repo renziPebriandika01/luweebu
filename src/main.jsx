@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Character from './page/Character.jsx';
+import Schedule from './page/Schedule.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/character",
     element: <Character/>,
+  },
+  {
+    path: "/schedule",
+    element: <Schedule/>,
   },
 ]);
 

@@ -1,37 +1,26 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import "../style/Trends.css";
+import { fetchDataTrends } from "../API/apiHandler";
 const Trends = () => {
   const [topAnime, setTopAnime] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showViewMore, setShowViewMore] = useState("");
+  const [isLoading, setIsLoading] = useState(false); 
 
-  const fetchData = () => {
-    axios.get('https://api.jikan.moe/v4/top/anime')
-      .then((response) => {
-        const data = response.data;
-        if (data.length === 0) {
-          setShowViewMore("Tidak ada lagi");
-        } else {
-          setTopAnime([...topAnime, ...data.data]);
-          setShowViewMore("Selanjutnya");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  
 
   useEffect(() => {
-    fetchData();
+    fetchDataTrends(currentPage, setTopAnime, setShowViewMore, setIsLoading);
   }, [currentPage]);
+  
 
   const viewMore = () => {
     setCurrentPage(currentPage + 1);
   };
 
-  const dataAnime = topAnime.map((data,id) => {
+  const dataAnime = topAnime.map((data, id) => {
     return (
       <div
         className="container max-w-[250px] mb-3 text-center text-black mx-auto"
@@ -60,6 +49,13 @@ const Trends = () => {
         <div className=" grid grid-cols-2 gap-2 sm:grid-cols-3">
           {dataAnime}
         </div>
+        {isLoading && ( 
+          <div className="flex justify-center mt-4 h-full">
+           <motion.div 
+           className="loader "
+           animate={{ x: 100 }} />
+          </div>
+        )}
         <button
           className="bg-orange-700 p-2 mt-4 rounded-md  "
           onClick={viewMore}

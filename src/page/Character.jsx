@@ -1,35 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import axios from "axios";
-
+import { fetchRandomCharacter } from "../API/apiHandler";
 const Character = () => {
   const [Data, setData] = useState([]);
   const [characters, setCharacters] = useState(null);
 
-  const fetchData = () => {
-    axios
-      .get("https://api.jikan.moe/v4/random/characters")
-      .then((response) => {
-        const data = response.data.data;
-        setData(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const fetchDataCharacter = () => {
+    fetchRandomCharacter().then((data) => {
+      setData(data);
+    });
   };
 
   const next = () => {
     setCharacters(true);
   };
   useEffect(() => {
-    fetchData()
+    fetchDataCharacter();
   }, []);
 
   useEffect(() => {
     if (!Data) {
-      fetchData();
+      fetchDataCharacter();
     } else if (characters) {
-      fetchData();
+      fetchDataCharacter();
       setCharacters(false);
     }
   }, [Data, characters]);

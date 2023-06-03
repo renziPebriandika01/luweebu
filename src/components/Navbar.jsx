@@ -19,7 +19,7 @@ const Navbar = () => {
       <header>
         <nav>
           {/* desktop */}
-          <div className="md:flex justify-center capitalize  mt-4 shadow-lg mb-2 hidden">
+          <div className="md:flex justify-center capitalize  mt-4 shadow-lg mb-2 hidden ">
             <div className="pb-2 space-x-6 text-shadow ">
               <AnimatedLink
                 to="/"
@@ -49,8 +49,8 @@ const Navbar = () => {
                 character
               </AnimatedLink>
 
-              <motion.a
-                href="#"
+              <AnimatedLink
+                to="/schedule"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
@@ -64,7 +64,7 @@ const Navbar = () => {
                 }}
               >
                 jadwal tayang
-              </motion.a>
+              </AnimatedLink>
 
               <motion.a
                 href="#"
@@ -85,18 +85,32 @@ const Navbar = () => {
           {/* mobile */}
           <div className="relative md:hidden bg-blue-500 p-4 mt-2 space-x-2">
             <button
-              className="absolute top-0 right-0 flex items-center p-2"
+              className="absolute top-0 right-0 flex items-center p-2 text-2xl"
               onClick={toggleMobileMenu}
             >
-              <FontAwesomeIcon icon={toggleBtnIcon} className="text-zinc-400" />
+              <FontAwesomeIcon icon={toggleBtnIcon} className="text-zinc-950" />
             </button>
             <div className="md:hidden">
-              {/* Tampilkan menu ketika hamburger diklik */}
               {isMobileMenuOpen && (
                 <div className=" p-4 mt-2 space-x-2 font-semibold text-black">
-                  <Link to="/" className="underline text-white rounded-md px-1 py-1 capitalize">top anime</Link>
-                  <Link to="/character" className="underline text-white rounded-lg px-1 py-1 capitalize">Random character</Link>
-                
+                  <Link
+                    to="/"
+                    className="underline text-white rounded-md px-1 py-1 capitalize"
+                  >
+                    top anime
+                  </Link>
+                  <Link
+                    to="/character"
+                    className="underline text-white rounded-lg px-1 py-1 capitalize"
+                  >
+                    Random character
+                  </Link>
+                  <Link
+                    to="/schedule"
+                    className="underline text-white rounded-lg px-1 py-1 capitalize"
+                  >
+                   jadwal
+                  </Link>
                 </div>
               )}
             </div>
