@@ -21,6 +21,9 @@ const Character = () => {
   const next = () => {
     setCharacters(true);
   };
+  useEffect(() => {
+    fetchData()
+  }, []);
 
   useEffect(() => {
     if (!Data) {
@@ -34,7 +37,7 @@ const Character = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-blue-950 h-screen">
+      <div className="bg-blue-950 h-screen mb-0">
         <h1 className="text-center mb-5 font-semibold text-white capitalize">
           random character anime
         </h1>
