@@ -99,7 +99,7 @@ const Navbar = () => {
             <div className="md:hidden ">
               {isMobileMenuOpen && (
                 <div className="space-x-2 font-semibold text-black mb-0 h-full pb-4">
-                  <img src={Emote} alt="" />
+                  <img src={Emote} alt="" className="w-[150px]"/>
                   <div className="grid grid-rows-[1fr] gap-2">
                     <li>
                       <Link

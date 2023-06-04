@@ -21,21 +21,22 @@ const Trends = () => {
   };
 
   const dataAnime = topAnime.map((data, id) => {
+    const dataImage = data.images.jpg.image_url
     return (
       <div
-        className="container max-w-[250px] mb-3 text-center text-black mx-auto"
+        className="container max-w-[190px] mb-3 text-center text-black mx-auto  "
         key={id}
       >
-        <div className="bg-white relative p-4 shadow-red-700">
-          <div className="flex justify-center pt-7  inset-x-0 top-0 ">
+        <div className="bg-white relative  shadow-red-700 rounded-lg p-1 shadow-lg pb-4 font-semibold text-gray-600">
+          <div className="flex justify-center  inset-x-0 top-0 ">
             <img
-              src={data.images.jpg.image_url}
+              src={dataImage}
               alt=""
-              className="object-cover w-[200px]"
+              className="object-cover w-[200px] rounded-lg"
             />
           </div>
-          <div className="title truncate mt-5">{data.title}</div>
-          <div className="status truncate">{data.title_japanese}</div>
+          <div className=" mt-5 truncate">{data.title}</div>
+          <div className=" mt-5 font-extrabold text-red-700">{data.score}</div>
         </div>
       </div>
     );
@@ -43,9 +44,9 @@ const Trends = () => {
   return (
     <div>
       <div className="bg-blue-950 text-white p-4">
-        <h1 className="text-center font-semibold text-lg mb-20 uppercase">
+        <p className="text-center font-serif text-xl mb-20 uppercase text-gray-300 ">
           top anime
-        </h1>
+        </p>
         <div className=" grid grid-cols-2 gap-2 sm:grid-cols-3">
           {dataAnime}
         </div>

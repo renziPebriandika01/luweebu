@@ -35,22 +35,28 @@ const Character = () => {
           random character anime
         </h1>
         {Data && (
-          <div>
+          <div className="container max-w-[250px] mx-auto bg-white rounded-xl p-2">
             {Data.images && Data.images.jpg && (
               <div className="flex justify-center">
-                <img src={Data.images.jpg.image_url} alt="Character Image" />
+                <img
+                  src={Data.images.jpg.image_url}
+                  alt="Character Image"
+                  className="rounded-xl"
+                />
               </div>
             )}
-            <p className="text-center text-white mt-5">{Data.name}</p>
+            <p className="text-center font-bold text-zinc-950 hover:text-red-700  mt-5 pb-4 underline object-cover">
+              {Data.name}
+            </p>
           </div>
         )}
 
         <div className="flex justify-center">
           <button
-            className="bg-cyan-600 mt-10 p-2 rounded-lg text-gray-300 hover:text-yellow-300 mb-4"
+            className="bg-cyan-600 mt-10  rounded-lg text-gray-300 hover:bg-blue-400  ease-in duration-300 px-5 uppercase"
             onClick={next}
           >
-            Next
+            next
           </button>
         </div>
       </div>
