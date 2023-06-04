@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Character from './page/Character.jsx';
 import Schedule from './page/Schedule.jsx';
+import Recomendation from './page/Recomendation.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/schedule",
     element: <Schedule/>,
+  },
+  {
+    path: "/rekomendasi",
+    element: <Recomendation/>,
   },
 ]);
 

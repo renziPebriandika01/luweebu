@@ -22,9 +22,21 @@ export const fetchDataTrends = async (
     setIsLoading(false);
   }
 };
+export const fetchDataSchedule = async (setIsLoading, setSchedule) => {
+  setIsLoading(true);
+  try {
+    const response = await axios.get("https://api.jikan.moe/v4/seasons/now");
+    const data = response.data;
+    setSchedule((prevData) => [...prevData, ...data.data]);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
-export const fetchRandomCharacter = ()=>{
-    return axios
+export const fetchRandomCharacter = () => {
+  return axios
     .get("https://api.jikan.moe/v4/random/characters")
     .then((response) => {
       return response.data.data;
@@ -32,4 +44,15 @@ export const fetchRandomCharacter = ()=>{
     .catch((error) => {
       console.log(error);
     });
-}
+};
+export const fetchDataRecomendation = async (setRecomendation) => {
+  try {
+    const response = await axios.get(
+      "https://api.jikan.moe/v4/recommendations/anime"
+    );
+    const data = response.data;
+    setRecomendation((prevData) => [...prevData, ...data.data]);
+  } catch (error) {
+    console.log(error);
+  }
+};

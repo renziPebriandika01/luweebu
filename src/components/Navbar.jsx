@@ -3,6 +3,7 @@ import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Emote from "../assets/emote layla.png";
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -19,10 +20,11 @@ const Navbar = () => {
       <header>
         <nav>
           {/* desktop */}
-          <div className="md:flex justify-center capitalize  mt-4 shadow-lg mb-2 hidden ">
-            <div className="pb-2 space-x-6 text-shadow ">
+          <div className="md:flex justify-center  mt-4 shadow-lg mb-2 hidden ">
+            <div className="pb-2 space-x-6 text-shadow">
               <AnimatedLink
                 to="/"
+                className=" capitalize"
                 whileHover={{
                   borderRadius: 3,
                   backgroundColor: "blue",
@@ -37,6 +39,7 @@ const Navbar = () => {
 
               <AnimatedLink
                 to="/character"
+                className=" capitalize"
                 whileHover={{
                   borderRadius: 3,
                   backgroundColor: "blue",
@@ -51,8 +54,7 @@ const Navbar = () => {
 
               <AnimatedLink
                 to="/schedule"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
+                className=" capitalize"
                 transition={{ duration: 0.5 }}
                 whileHover={{
                   borderRadius: 3,
@@ -66,8 +68,9 @@ const Navbar = () => {
                 jadwal tayang
               </AnimatedLink>
 
-              <motion.a
-                href="#"
+              <AnimatedLink
+                to="/rekomendasi"
+                className=" capitalize"
                 whileHover={{
                   borderRadius: 3,
                   backgroundColor: "blue",
@@ -78,39 +81,61 @@ const Navbar = () => {
                 }}
               >
                 rekomendasi
-              </motion.a>
+              </AnimatedLink>
             </div>
           </div>
           {/* desktop */}
           {/* mobile */}
-          <div className="relative md:hidden bg-blue-500 p-4 mt-2 space-x-2">
+          <div className="fixed md:hidden bg-blue-500 z-40 space-x-2 w-full top-0">
             <button
               className="absolute top-0 right-0 flex items-center p-2 text-2xl"
               onClick={toggleMobileMenu}
             >
-              <FontAwesomeIcon icon={toggleBtnIcon} className="text-zinc-950" />
+              <FontAwesomeIcon
+                icon={toggleBtnIcon}
+                className="text-red-400 pr-3"
+              />
             </button>
-            <div className="md:hidden">
+            <div className="md:hidden ">
               {isMobileMenuOpen && (
-                <div className=" p-4 mt-2 space-x-2 font-semibold text-black">
-                  <Link
-                    to="/"
-                    className="underline text-white rounded-md px-1 py-1 capitalize"
-                  >
-                    top anime
-                  </Link>
-                  <Link
-                    to="/character"
-                    className="underline text-white rounded-lg px-1 py-1 capitalize"
-                  >
-                    Random character
-                  </Link>
-                  <Link
-                    to="/schedule"
-                    className="underline text-white rounded-lg px-1 py-1 capitalize"
-                  >
-                   jadwal
-                  </Link>
+                <div className="space-x-2 font-semibold text-black mb-0 h-full pb-4">
+                  <img src={Emote} alt="" />
+                  <div className="grid grid-rows-[1fr] gap-2">
+                    <li>
+                      <Link
+                        to="/"
+                        className="underline text-white rounded-md px-1 py-1 capitalize"
+                      >
+                        top anime
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/character"
+                        className="underline text-white rounded-lg px-1 py-1 capitalize"
+                      >
+                        Random character
+                      </Link>
+                    </li>
+                    <li>
+              
+                      <Link
+                        to="/schedule"
+                        className="underline text-white rounded-lg px-1 py-1 capitalize"
+                      >
+                        jadwal tayang
+                      </Link>
+                    </li>
+                    <li>
+                  
+                      <Link
+                        to="/rekomendasi"
+                        className="underline text-white rounded-lg px-1 py-1 capitalize"
+                      >
+                        rekomendasi
+                      </Link>
+                    </li>
+                  </div>
                 </div>
               )}
             </div>

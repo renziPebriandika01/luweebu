@@ -41,7 +41,7 @@ const Character = () => {
                 <img src={Data.images.jpg.image_url} alt="Character Image" />
               </div>
             )}
-            <p className="text-center text-white">{Data.name}</p>
+            <p className="text-center text-white mt-5">{Data.name}</p>
           </div>
         )}
 
