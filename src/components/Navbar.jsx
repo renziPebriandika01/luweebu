@@ -60,7 +60,7 @@ const Navbar = () => {
               >
                 {isMobileMenuOpen && (
                   <div className="font-semibold text-black mb-0 h-full pb-4">
-                    <img src={Emote} alt="" className="w-[150px]" />
+                    <img src={Emote} alt="" className="w-[150px] mx-auto" />
                     <div className="">
                       {Menus.map((menu, index) => {
                         return (

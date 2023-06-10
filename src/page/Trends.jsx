@@ -1,17 +1,33 @@
 import React from "react";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "../style/Trends.css";
 import { fetchDataTrends } from "../API/apiHandler";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Trends = () => {
   const [topAnime, setTopAnime] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showViewMore, setShowViewMore] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isScrollToTopVisible, setIsScrollToTopVisible] = useState(false);
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     fetchDataTrends(currentPage, setTopAnime, setShowViewMore, setIsLoading);
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrollToTopVisible(scrollTop > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [currentPage]);
 
   const viewMore = () => {
@@ -52,6 +68,14 @@ const Trends = () => {
           <div className="flex justify-center mt-4 h-full">
             <motion.div className="loader " animate={{ x: 100 }} />
           </div>
+        )}
+        {isScrollToTopVisible && (
+          <button
+            className="fixed bottom-10 right-10 bg-white p-2 rounded-full shadow-md"
+            onClick={scrollToTop}
+          >
+            <FontAwesomeIcon icon={faArrowUp} className="text-black" />
+          </button>
         )}
         <button
           className="bg-orange-700 p-2 mt-4 rounded-md  "
