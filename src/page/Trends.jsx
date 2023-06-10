@@ -8,20 +8,18 @@ const Trends = () => {
   const [topAnime, setTopAnime] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showViewMore, setShowViewMore] = useState("");
-  const [isLoading, setIsLoading] = useState(false); 
-
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchDataTrends(currentPage, setTopAnime, setShowViewMore, setIsLoading);
   }, [currentPage]);
-  
 
   const viewMore = () => {
     setCurrentPage(currentPage + 1);
   };
 
   const dataAnime = topAnime.map((data, id) => {
-    const dataImage = data.images.jpg.image_url
+    const dataImage = data.images.jpg.image_url;
     return (
       <div
         className="container max-w-[190px] mb-3 text-center text-black mx-auto  "
@@ -50,11 +48,9 @@ const Trends = () => {
         <div className=" grid grid-cols-2 gap-2 sm:grid-cols-3">
           {dataAnime}
         </div>
-        {isLoading && ( 
+        {isLoading && (
           <div className="flex justify-center mt-4 h-full">
-           <motion.div 
-           className="loader "
-           animate={{ x: 100 }} />
+            <motion.div className="loader " animate={{ x: 100 }} />
           </div>
         )}
         <button

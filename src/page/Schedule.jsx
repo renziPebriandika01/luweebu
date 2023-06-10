@@ -14,7 +14,7 @@ const Schedule = () => {
   const dataSchedule = schedule.map((data, id) => {
     return (
       <div
-        className="container md:max-w-[200px] max-w-[150px] mb-3 text-center bg-blue-600 text-white  mx-auto shadow-lg mt-10 "
+        className="container md:max-w-[200px] max-w-[150px] mb-3 text-center bg-blue-600 text-white  mx-auto shadow-lg mt-10 rounded-lg p-1 "
         key={id}
       >
         <div className="">
@@ -22,7 +22,7 @@ const Schedule = () => {
             <img
               src={data.images.webp.image_url}
               alt=""
-              className="object-cover w-[200px] "
+              className="object-cover w-[200px] rounded-lg "
             />
           </div>
           <div className=" truncate mt-5 px-2">{data.title}</div>

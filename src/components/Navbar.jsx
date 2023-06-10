@@ -6,8 +6,12 @@ import { Link } from "react-router-dom";
 import Emote from "../assets/emote layla.png";
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const AnimatedLink = motion(Link);
+  const Menus = [
+    { title: "top Anime", link: "/" },
+    { title: "random character", link: "/character" },
+    { title: "jadwal tayang", link: "/schedule" },
+    { title: "rekomendasi", link: "/rekomendasi" },
+  ];
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -21,68 +25,18 @@ const Navbar = () => {
         <nav>
           {/* desktop */}
           <div className="md:flex justify-center  mt-4 shadow-lg mb-2 hidden ">
-            <div className="pb-2 space-x-6 text-shadow">
-              <AnimatedLink
-                to="/"
-                className=" capitalize"
-                whileHover={{
-                  borderRadius: 3,
-                  backgroundColor: "blue",
-                  scale: 1.1,
-                  padding: 2,
-                  color: "white",
-                  transition: { duration: 0.2, ease: "easeInOut" },
-                }}
-              >
-                top anime
-              </AnimatedLink>
-
-              <AnimatedLink
-                to="/character"
-                className=" capitalize"
-                whileHover={{
-                  borderRadius: 3,
-                  backgroundColor: "blue",
-                  scale: 1.1,
-                  padding: 2,
-                  color: "white",
-                  transition: { duration: 0.1, ease: "easeInOut" },
-                }}
-              >
-                character
-              </AnimatedLink>
-
-              <AnimatedLink
-                to="/schedule"
-                className=" capitalize"
-                transition={{ duration: 0.5 }}
-                whileHover={{
-                  borderRadius: 3,
-                  backgroundColor: "blue",
-                  scale: 1.1,
-                  padding: 2,
-                  color: "white",
-                  transition: { duration: 0.1, ease: "easeInOut" },
-                }}
-              >
-                jadwal tayang
-              </AnimatedLink>
-
-              <AnimatedLink
-                to="/rekomendasi"
-                className=" capitalize"
-                whileHover={{
-                  borderRadius: 3,
-                  backgroundColor: "blue",
-                  scale: 1.1,
-                  padding: 2,
-                  color: "white",
-                  transition: { duration: 0.2, ease: "easeInOut" },
-                }}
-              >
-                rekomendasi
-              </AnimatedLink>
-            </div>
+            {Menus.map((menu, index) => {
+              return (
+                <div key={index} className="pb-5">
+                  <Link
+                    to={menu.link}
+                    className="text-lg text-zinc-950 px-7 capitalize hover:text-red-600"
+                  >
+                    {menu.title}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
           {/* desktop */}
           {/* mobile */}
@@ -97,47 +51,35 @@ const Navbar = () => {
               />
             </button>
             <div className="md:hidden ">
-              {isMobileMenuOpen && (
-                <div className="space-x-2 font-semibold text-black mb-0 h-full pb-4">
-                  <img src={Emote} alt="" className="w-[150px]"/>
-                  <div className="grid grid-rows-[1fr] gap-2">
-                    <li>
-                      <Link
-                        to="/"
-                        className="underline text-white rounded-md px-1 py-1 capitalize"
-                      >
-                        top anime
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/character"
-                        className="underline text-white rounded-lg px-1 py-1 capitalize"
-                      >
-                        Random character
-                      </Link>
-                    </li>
-                    <li>
-              
-                      <Link
-                        to="/schedule"
-                        className="underline text-white rounded-lg px-1 py-1 capitalize"
-                      >
-                        jadwal tayang
-                      </Link>
-                    </li>
-                    <li>
-                  
-                      <Link
-                        to="/rekomendasi"
-                        className="underline text-white rounded-lg px-1 py-1 capitalize"
-                      >
-                        rekomendasi
-                      </Link>
-                    </li>
+              <div
+                className={`menu-container ${
+                  isMobileMenuOpen
+                    ? "max-h-96 transition-all duration-700"
+                    : "max-h-0 "
+                }`}
+              >
+                {isMobileMenuOpen && (
+                  <div className="font-semibold text-black mb-0 h-full pb-4">
+                    <img src={Emote} alt="" className="w-[150px]" />
+                    <div className="">
+                      {Menus.map((menu, index) => {
+                        return (
+                          <div key={index} className="pb-5 ">
+                            <div className="w-full">
+                              <Link
+                                to={menu.link}
+                                className="text-lg block text-white capitalize hover:text-cyan-700 border-b-2"
+                              >
+                                {menu.title}
+                              </Link>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </nav>
