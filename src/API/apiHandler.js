@@ -10,7 +10,7 @@ export const fetchDataTrends = async (
   try {
     const response = await axios.get("https://api.jikan.moe/v4/top/anime");
     const data = response.data;
-    if (data.length === 0) {
+    if (data.length === 2) {
       setShowViewMore("Tidak ada lagi");
     } else {
       setTopAnime((prevData) => [...prevData, ...data.data]);
@@ -54,5 +54,19 @@ export const fetchDataRecomendation = async (setRecomendation) => {
     setRecomendation((prevData) => [...prevData, ...data.data]);
   } catch (error) {
     console.log(error);
+  }
+};
+export const fetchDataUpcoming = async (setDataUpcoming, setIsLoading) => {
+  setIsLoading(true);
+  try {
+    const response = await axios.get(
+      "https://api.jikan.moe/v4/seasons/upcoming"
+    );
+    const data = response.data;
+    setDataUpcoming((prevData) => [...prevData, ...data.data]);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    setIsLoading(false);
   }
 };

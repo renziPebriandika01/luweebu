@@ -30,10 +30,10 @@ const Character = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-blue-950 h-screen mb-0">
-        <h1 className="text-center mb-5 font-semibold text-white capitalize">
+      <div className="bg-blue-950 h-full mb-0">
+        <div className="text-xl text-center  py-6 uppercase text-gray-300 font-serif">
           random character anime
-        </h1>
+        </div>
         {Data && (
           <div className="container max-w-[250px] mx-auto bg-white rounded-xl p-2">
             {Data.images && Data.images.jpg && (
@@ -51,9 +51,9 @@ const Character = () => {
           </div>
         )}
 
-        <div className="flex justify-center">
+        <div className="flex justify-center pb-10">
           <button
-            className="bg-cyan-600 mt-10  rounded-lg text-gray-300 hover:bg-blue-400  ease-in duration-300 px-5 uppercase"
+            className="bg-cyan-600 mt-10 rounded-lg text-gray-300 hover:bg-blue-400  ease-in duration-300 px-5 uppercase"
             onClick={next}
           >
             next

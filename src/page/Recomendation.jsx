@@ -3,15 +3,31 @@ import { useEffect } from "react";
 import { fetchDataRecomendation } from "../API/apiHandler";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Recomendation = () => {
   const [recomendation, setRecomendation] = useState([]);
+  const [isScrollToTopVisible, setIsScrollToTopVisible] = useState(false);
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   useEffect(() => {
     fetchDataRecomendation(setRecomendation);
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrollToTopVisible(scrollTop > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
   const dataRecomendation = recomendation.map((data, id) => {
     const image_url = data.entry[0].images.jpg.image_url;
     const title = data.entry[0].title;
-    console.log(title);
     return (
       <div
         key={id}
@@ -32,12 +48,20 @@ const Recomendation = () => {
     <div>
       <Navbar />
       <div className="bg-blue-950 ">
-        <h1 className="text-white text-xl font-semibold capitalize text-center pt-7 ">
-         rekomendasi anime
+        <h1 className="text-xl text-center  py-6 uppercase text-gray-300 font-serif">
+          rekomendasi anime
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4 ">
           {dataRecomendation}
         </div>
+        {isScrollToTopVisible && (
+          <button
+            className="fixed bottom-10 right-10 bg-white p-2 rounded-full shadow-md"
+            onClick={scrollToTop}
+          >
+            <FontAwesomeIcon icon={faArrowUp} className="text-black" />
+          </button>
+        )}
       </div>
     </div>
   );

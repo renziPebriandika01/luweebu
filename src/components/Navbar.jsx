@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Emote from "../assets/emote layla.png";
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const Menus = [
@@ -11,6 +12,7 @@ const Navbar = () => {
     { title: "random character", link: "/character" },
     { title: "jadwal tayang", link: "/schedule" },
     { title: "rekomendasi", link: "/rekomendasi" },
+    { title: "anime yg akan rilis", link: "/upcoming" },
   ];
 
   const toggleMobileMenu = () => {
@@ -30,7 +32,7 @@ const Navbar = () => {
                 <div key={index} className="pb-5">
                   <Link
                     to={menu.link}
-                    className="text-lg text-zinc-950 px-7 capitalize hover:text-red-600"
+                    className="text-lg text-zinc-950 px-7 capitalize hover:text-blue-900"
                   >
                     {menu.title}
                   </Link>
@@ -60,7 +62,8 @@ const Navbar = () => {
               >
                 {isMobileMenuOpen && (
                   <div className="font-semibold text-black mb-0 h-full pb-4">
-                    <img src={Emote} alt="" className="w-[150px] mx-auto" />
+                    <img src={Emote} alt="" className="w-[150px] mx-auto" />              
+          
                     <div className="">
                       {Menus.map((menu, index) => {
                         return (

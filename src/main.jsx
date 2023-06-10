@@ -9,6 +9,7 @@ import {
 import Character from './page/Character.jsx';
 import Schedule from './page/Schedule.jsx';
 import Recomendation from './page/Recomendation.jsx';
+import Upcoming from './page/Upcoming.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/rekomendasi",
     element: <Recomendation/>,
+  },
+  {
+    path: "/upcoming",
+    element: <Upcoming/>,
   },
 ]);
 
