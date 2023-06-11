@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Emote from "../assets/emote layla.png";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,6 +14,7 @@ const Navbar = () => {
     { title: "jadwal tayang", link: "/schedule" },
     { title: "rekomendasi", link: "/rekomendasi" },
     { title: "anime yg akan rilis", link: "/upcoming" },
+    { title:<FontAwesomeIcon icon={faMagnifyingGlass}/>, text:true,link: "/search",color:true },
   ];
 
   const toggleMobileMenu = () => {
@@ -56,7 +58,7 @@ const Navbar = () => {
               <div
                 className={`menu-container ${
                   isMobileMenuOpen
-                    ? "max-h-96 transition-all duration-700"
+                    ? "max-h-full transition-all duration-700"
                     : "max-h-0 "
                 }`}
               >
@@ -71,9 +73,9 @@ const Navbar = () => {
                             <div className="w-full">
                               <Link
                                 to={menu.link}
-                                className="text-lg block text-white capitalize hover:text-cyan-700 border-b-2"
+                                className={`text-lg block capitalize hover:text-cyan-700 border-b-2   ${menu.color ? "text-red-400" : "text-white"} `}
                               >
-                                {menu.title}
+                               {menu.text?"cari...":null} {menu.title}
                               </Link>
                             </div>
                           </div>

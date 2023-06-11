@@ -15,7 +15,7 @@ const Recomendation = () => {
     fetchDataRecomendation(setRecomendation);
     const handleScroll = () => {
       const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+        window.scrollY|| document.documentElement.scrollTop;
       setIsScrollToTopVisible(scrollTop > 300);
     };
 

@@ -45,6 +45,7 @@ export const fetchRandomCharacter = () => {
       console.log(error);
     });
 };
+
 export const fetchDataRecomendation = async (setRecomendation) => {
   try {
     const response = await axios.get(
@@ -68,5 +69,14 @@ export const fetchDataUpcoming = async (setDataUpcoming, setIsLoading) => {
     console.log(error);
   } finally {
     setIsLoading(false);
+  }
+};
+export const fetchSearchData = async (setDataSearch) => {
+  try {
+    const response = await axios.get("https://api.jikan.moe/v4/anime");
+    const data = response.data;
+    setDataSearch((prevData) => [...prevData, ...data.data]);
+  } catch (error) {
+    console.log(error);
   }
 };
