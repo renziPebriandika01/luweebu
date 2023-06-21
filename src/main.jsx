@@ -10,7 +10,7 @@ import Character from './page/Character.jsx';
 import Schedule from './page/Schedule.jsx';
 import Recomendation from './page/Recomendation.jsx';
 import Upcoming from './page/Upcoming.jsx';
-import Search from './page/Search.jsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,10 +32,7 @@ const router = createBrowserRouter([
     path: "/upcoming",
     element: <Upcoming/>,
   },
-  {
-    path: "/search",
-    element: <Search/>,
-  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -8,14 +8,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Recomendation = () => {
   const [recomendation, setRecomendation] = useState([]);
   const [isScrollToTopVisible, setIsScrollToTopVisible] = useState(false);
+  const [showFullText, setShowFullText] = useState(false);
+  const [expandedEntries, setExpandedEntries] = useState([]);
+
+  const toggleEntryExpand = (index) => {
+    setExpandedEntries((prevExpandedEntries) => {
+      const newExpandedEntries = [...prevExpandedEntries];
+      newExpandedEntries[index] = !newExpandedEntries[index];
+      return newExpandedEntries;
+    });
+  };
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   useEffect(() => {
     fetchDataRecomendation(setRecomendation);
+    setExpandedEntries(new Array(recomendation.length).fill(false));
     const handleScroll = () => {
-      const scrollTop =
-        window.scrollY|| document.documentElement.scrollTop;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
       setIsScrollToTopVisible(scrollTop > 300);
     };
 
@@ -40,6 +50,21 @@ const Recomendation = () => {
             className="object-cover w-[200px] rounded-lg "
           />
           <div className="text-gray-600font-semibold mt-2 pb-3 ">{title}</div>
+          <div className="max-w-md">
+            <div
+              className={`overflow-hidden ${expandedEntries[id] ? "max-h-full" : "h-10"}`}
+            >
+              <p>{data.content}</p>
+            </div>
+            {!expandedEntries[id] && (
+              <button
+                className="text-white-500 font-semibold"
+                onClick={() => toggleEntryExpand(id)}
+              >
+                Selengkapnya...
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );

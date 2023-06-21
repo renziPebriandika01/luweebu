@@ -8,6 +8,7 @@ const Character = () => {
   const fetchDataCharacter = () => {
     fetchRandomCharacter().then((data) => {
       setData(data);
+      console.log(data)
     });
   };
 

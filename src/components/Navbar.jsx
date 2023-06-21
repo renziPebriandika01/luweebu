@@ -14,7 +14,6 @@ const Navbar = () => {
     { title: "jadwal tayang", link: "/schedule" },
     { title: "rekomendasi", link: "/rekomendasi" },
     { title: "anime yg akan rilis", link: "/upcoming" },
-    { title:<FontAwesomeIcon icon={faMagnifyingGlass}/>, text:true,link: "/search",color:true },
   ];
 
   const toggleMobileMenu = () => {

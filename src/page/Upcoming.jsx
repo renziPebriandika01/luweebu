@@ -45,21 +45,7 @@ const Upcoming = () => {
           />
           <div className="text-gray-600font-semibold mt-2 pb-3 ">{title}</div>
           <div className="text-gray-600font-semibold mt-2 pb-3 ">
-            {airedDay === 1
-              ? "minggu"
-              : airedDay === 2
-              ? "senin"
-              : airedDay === 3
-              ? "selasa"
-              : airedDay === 4
-              ? "rabu"
-              : airedDay === 5
-              ? "kamis"
-              : airedDay === 6
-              ? "jumat"
-              : airedDay === 7
-              ? "sabtu"
-              : airedDay}
+            {airedDay}
             -
             {airedMonth === 1
               ? "januari"
